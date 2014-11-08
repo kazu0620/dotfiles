@@ -1,0 +1,1 @@
+/home/kazu0620/dotfiles/.zsh
