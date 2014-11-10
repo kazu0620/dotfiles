@@ -60,6 +60,7 @@ NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'Shougo/vimshell.vim'
 NeoBundle 'Shougo/vimproc', {
     \ 'build': {
         \ 'windows': 'make -f make_mingw32.mak',
@@ -139,3 +140,19 @@ let g:lightline = {
         \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
         \ },
 \ }
+
+"======= vim shell settings =============
+let g:vimshell_prompt = "[".$USERNAME."] # "
+nnoremap <Leader>s :VimShell<CR>
+nnoremap <Leader>ss :VimShellSendString<CR>
+
+"======= neocomplcache settings =============
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_camel_case_completion = 1
+let g:neocomplcache_enable_underbar_completion = 1
+let g:neocomplcache_smart_case = 1
+let g:neocomplcache_min_syntax_length = 3
+let g:neocomplcache_manual_completion_start_length = 0
+let g:neocomplcache_caching_percent_in_statusline = 1
+let g:neocomplcache_enable_skip_completion = 1
+let g:neocomplcache_skip_input_time = '0.5'
