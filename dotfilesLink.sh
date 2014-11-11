@@ -7,3 +7,4 @@ ln -s ~/dotfiles/.vim ~/.vim
 ln -s ~/dotfiles/.zsh ~/.zsh
 ln -s ~/dotfiles/.screenrc ~/.screenrc
 ln -s ~/dotfiles/.gitconfig ~/.gitconfig
+ln -s ~/dotfiles/.peco ~/.peco
