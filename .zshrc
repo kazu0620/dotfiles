@@ -132,9 +132,28 @@ alias cp='cp -i'
 alias mv='mv -i'
  
 alias mkdir='mkdir -p'
+alias -g P='| peco'
+alias -g Px='|peco|xargs'
  
 # sudo の後のコマンドでエイリアスを有効にする
 alias sudo='sudo '
+
+# pecoでhistoryを表示する
+function phistory() {
+    local tac
+    if which tac > /dev/null; then
+        tac="tac"
+    else
+        tac="tail -r"
+    fi
+    BUFFER=$(\history -n 1 | \
+        eval $tac | \
+        peco --query "$LBUFFER")
+    CURSOR=$#BUFFER
+    zle clear-screen
+}
+zle -N phistory
+bindkey '^H' phistory
 
 # 存在した場合はローカル用設定を読み込む
 load_if_exists () {
