@@ -153,7 +153,7 @@ function phistory() {
     zle clear-screen
 }
 zle -N phistory
-bindkey '^H' phistory
+bindkey '^r' phistory
 
 # 存在した場合はローカル用設定を読み込む
 load_if_exists () {
