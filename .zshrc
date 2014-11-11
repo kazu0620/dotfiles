@@ -14,8 +14,6 @@ HISTFILE=~/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
 
-# プロンプト
-PROMPT="%{${fg[cyan]}%}[%n@ENV_NAME%~]%{${reset_color}%} # "
 
 # gitリポジトリにいる時は右プロンプトに情報を表示
 source ~/.zsh/git-prompt.sh
@@ -138,4 +136,10 @@ alias mkdir='mkdir -p'
 # sudo の後のコマンドでエイリアスを有効にする
 alias sudo='sudo '
 
-alias dev_server='bundle exec rackup -p 8012 -o 49.212.195.111'
+# 存在した場合はローカル用設定を読み込む
+load_if_exists () {
+    if [ -f $1 ]; then
+        source $1
+    fi
+}
+load_if_exists "$HOME/.zshrc.local"
