@@ -1,6 +1,9 @@
 set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set expandtab
 set autoindent
+set smartindent
 set wrapscan
 set showmatch
 set wildmenu
@@ -22,22 +25,6 @@ augroup vimrc
 augroup END
 
 "-----------------------------
-" buffer switching
-"-----------------------------
-nmap [space]n :<C-U>bnext<CR>
-nmap [space]p :<C-U>bprevious<CR>
-nnoremap <Leader>1   :e #1<CR>
-nnoremap <Leader>2   :e #2<CR>
-nnoremap <Leader>3   :e #3<CR>
-nnoremap <Leader>4   :e #4<CR>
-nnoremap <Leader>5   :e #5<CR>
-nnoremap <Leader>6   :e #6<CR>
-nnoremap <Leader>7   :e #7<CR>
-nnoremap <Leader>8   :e #8<CR>
-nnoremap <Leader>9   :e #9<CR>
-nmap ,b :buffers<CR>
-
-"-----------------------------
 " Neobundle
 "-----------------------------
 if has('vim_starting')
@@ -55,13 +42,15 @@ NeoBundle 'gregsexton/gitv.git'
 NeoBundle 'skwp/vim-rspec'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'jiangmiao/auto-pairs'
+NeoBundle 'vim-scripts/vim-auto-save'
+NeoBundle 'tsukkee/unite-tag.git'
+NeoBundle 'soramugi/auto-ctags.vim'
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'Shougo/unite.vim'
-NeoBundle "tsukkee/unite-tag.git"
-NeoBundle 'soramugi/auto-ctags.vim'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/vimshell.vim'
 NeoBundle 'Shougo/vimproc', {
@@ -130,7 +119,8 @@ nnoremap <silent> <Leader>uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR
 nnoremap <silent> <Leader>ur :<C-u>Unite -buffer-name=register register<CR>
 nnoremap <silent> <Leader>uu :<C-u>Unite file_mru buffer<CR>
 nnoremap <silent> <Leader>ub :<C-u>Unite bookmark<CR>
-nnoremap <silent> <Leader>uba :<C-u>UniteBookmarkAdd<CR>
+nnoremap <silent> <leader>uba :<c-u>unitebookmarkadd<cr>
+nnoremap <silent> <Leader>b :<C-u>Unite buffer<CR>
 nnoremap <silent> ,g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
 
 "-----------------------------
@@ -165,7 +155,7 @@ nnoremap <Leader>ss :VimShellSendString<CR>
 "-----------------------------
 " neocomplcache
 "-----------------------------
-let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_at_startup = 0
 let g:neocomplcache_enable_camel_case_completion = 1
 let g:neocomplcache_enable_underbar_completion = 1
 let g:neocomplcache_smart_case = 1
@@ -198,3 +188,8 @@ let g:auto_ctags_directory_list = ['.git']
 set tags+=.git/tags
 set tags+=.git/ruby.tags
 nnoremap <Leader>t :Ctags<CR>
+
+"-----------------------------
+" vim-auto-save
+"-----------------------------
+let g:auto_save = 1
