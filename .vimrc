@@ -1,6 +1,5 @@
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
+set tabstop=4
+set shiftwidth=4
 set expandtab
 set autoindent
 set smartindent
@@ -17,6 +16,7 @@ set laststatus=2
 set cmdheight=2
 set showcmd
 set notitle
+set hlsearch
 set visualbell t_vb=
 set noswapfile
 let mapleader = ","
@@ -43,7 +43,6 @@ NeoBundle 'skwp/vim-rspec'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'jiangmiao/auto-pairs'
-NeoBundle 'vim-scripts/vim-auto-save'
 NeoBundle 'tsukkee/unite-tag.git'
 NeoBundle 'soramugi/auto-ctags.vim'
 NeoBundle 'Shougo/vimfiler'
@@ -108,7 +107,7 @@ function! RSpecQuickrun()
   let b:quickrun_config = {'type' : 'rspec/bundle'}
   nnoremap <expr> <Leader>t "<Esc>:QuickRun -cmdopt \"-l " . line(".") . "\"<CR>"
 endfunction
-autocmd BufReadPost *_spec.rb call RSpecQuickrun()
+autocmd vimrc BufReadPost *_spec.rb call RSpecQuickrun()
 
 "-----------------------------
 " unite.vim
@@ -138,11 +137,11 @@ nnoremap <Leader>gii :Gitv!<CR>
 " lightline.vim
 "-----------------------------
 let g:lightline = {
-        \ 'colorscheme': 'wombat',
-        \ 'mode_map': {'c': 'NORMAL'},
-        \ 'active': {
-        \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
-        \ },
+  \ 'colorscheme': 'wombat',
+  \ 'mode_map': {'c': 'NORMAL'},
+  \ 'active': {
+  \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
+  \ },
 \ }
 
 "-----------------------------
@@ -168,11 +167,11 @@ let g:neocomplcache_skip_input_time = '0.5'
 "-----------------------------
 " unite-tag
 "-----------------------------
-autocmd BufEnter *
+autocmd vimrc BufEnter *
 \   if empty(&buftype)
 \|      nnoremap <buffer> <C-]> :<C-u>UniteWithCursorWord -immediately tag<CR>
 \|  endif
-autocmd BufEnter *
+autocmd vimrc BufEnter *
 \   if empty(&buftype)
 \|      nnoremap <buffer> <C-t> :<C-u>Unite jump<CR>
 \|  endif
@@ -189,7 +188,21 @@ set tags+=.git/tags
 set tags+=.git/ruby.tags
 nnoremap <Leader>t :Ctags<CR>
 
-"-----------------------------
-" vim-auto-save
-"-----------------------------
-let g:auto_save = 1
+"-------------------------------
+" ファイルに応じてタブ幅を変更
+"-------------------------------
+autocmd vimrc BufNewFile,BufRead *.rb    set nowrap tabstop=2 shiftwidth=2
+autocmd vimrc BufNewFile,BufRead *.erb   set nowrap tabstop=2 shiftwidth=2
+autocmd vimrc BufNewFile,BufRead *.vimrc set nowrap tabstop=2 shiftwidth=2
+
+"-------------------------------
+" ファイル更新時常に自動保存する
+"-------------------------------
+autocmd vimrc CursorHold,InsertLeave * silent! wa
+
+"-------------------------------
+" .localが存在する場合は読み込む
+"-------------------------------
+if filereadable( $HOME . "/.vimrc.local" )
+  source ~/.vimrc.local
+endif
