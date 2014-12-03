@@ -6,9 +6,14 @@ export LANG=ja_JP.UTF-8
 autoload -Uz colors
 colors
  
-# emacs 風キーバインドにする
-bindkey -e
- 
+# 存在した場合はローカル用設定を読み込む
+load_if_exists () {
+    if [ -f $1 ]; then
+        source $1
+    fi
+}
+load_if_exists "$HOME/.zshrc.local"
+
 # ヒストリの設定
 HISTFILE=~/.zsh_history
 HISTSIZE=1000000
@@ -154,11 +159,3 @@ function phistory() {
 }
 zle -N phistory
 bindkey '^r' phistory
-
-# 存在した場合はローカル用設定を読み込む
-load_if_exists () {
-    if [ -f $1 ]; then
-        source $1
-    fi
-}
-load_if_exists "$HOME/.zshrc.local"
