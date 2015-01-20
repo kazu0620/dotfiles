@@ -19,6 +19,7 @@ set notitle
 set hlsearch
 set visualbell t_vb=
 set noswapfile
+set backspace=start,eol,indent
 let mapleader = ","
 augroup vimrc
   autocmd!
@@ -69,9 +70,9 @@ filetype plugin indent on
 " neosnippet
 "-----------------------------
 " snippets key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
 " SuperTab like snippets behavior.
 imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 \ "\<Plug>(neosnippet_expand_or_jump)"
@@ -154,7 +155,7 @@ nnoremap <Leader>ss :VimShellSendString<CR>
 "-----------------------------
 " neocomplcache
 "-----------------------------
-let g:neocomplcache_enable_at_startup = 0
+let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_camel_case_completion = 1
 let g:neocomplcache_enable_underbar_completion = 1
 let g:neocomplcache_smart_case = 1
@@ -186,14 +187,13 @@ let g:auto_ctags_tags_args = '--tag-relative --recurse --sort=yes'
 let g:auto_ctags_directory_list = ['.git']
 set tags+=.git/tags
 set tags+=.git/ruby.tags
-nnoremap <Leader>t :Ctags<CR>
 
 "-------------------------------
 " ファイルに応じてタブ幅を変更
 "-------------------------------
-autocmd vimrc BufNewFile,BufRead *.rb    set nowrap tabstop=2 shiftwidth=2
-autocmd vimrc BufNewFile,BufRead *.erb   set nowrap tabstop=2 shiftwidth=2
-autocmd vimrc BufNewFile,BufRead *.vimrc set nowrap tabstop=2 shiftwidth=2
+autocmd vimrc BufNewFile,BufRead *.rb    set tabstop=2 shiftwidth=2
+autocmd vimrc BufNewFile,BufRead *.erb   set tabstop=2 shiftwidth=2
+autocmd vimrc BufNewFile,BufRead *.vimrc set tabstop=2 shiftwidth=2
 
 "-------------------------------
 " ファイル更新時常に自動保存する
