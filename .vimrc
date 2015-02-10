@@ -114,6 +114,11 @@ autocmd vimrc BufReadPost *_spec.rb call RSpecQuickrun()
 " unite.vim
 "-----------------------------
 let g:unite_source_history_yank_enable =1
+let g:unite_source_grep_default_opts   = '--nogroup --nocolor --column'
+let g:unite_source_grep_recursive_opt  = ''
+if executable('ag')
+  let g:unite_source_grep_command = 'ag'
+endif
 nnoremap <silent> <Leader>uy :<C-u>Unite history/yank<CR>
 nnoremap <silent> <Leader>uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> <Leader>ur :<C-u>Unite -buffer-name=register register<CR>
@@ -122,6 +127,7 @@ nnoremap <silent> <Leader>ub :<C-u>Unite bookmark<CR>
 nnoremap <silent> <leader>uba :<c-u>unitebookmarkadd<cr>
 nnoremap <silent> <Leader>b :<C-u>Unite buffer<CR>
 nnoremap <silent> ,g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
+nnoremap <silent> ,gg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
 
 "-----------------------------
 " vimfiler
