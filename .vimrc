@@ -37,30 +37,15 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 " Repos
 NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'tpope/vim-fugitive.git'
-NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'gregsexton/gitv.git'
-NeoBundle 'skwp/vim-rspec'
 NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'jiangmiao/auto-pairs'
 NeoBundle 'tsukkee/unite-tag.git'
 NeoBundle 'soramugi/auto-ctags.vim'
-NeoBundle 'Shougo/vimfiler'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'Shougo/vimshell.vim'
-NeoBundle 'Shougo/vimproc', {
-    \ 'build': {
-        \ 'windows': 'make -f make_mingw32.mak',
-        \ 'cygwin': 'make -f make_cygwin.mak',
-        \ 'mac': 'make -f make_mac.mak',
-        \ 'unix': 'make -f make_unix.mak',
-    \ }
-\}
 call neobundle#end()
 NeoBundleCheck
 syntax on
@@ -88,29 +73,6 @@ endif
 let g:neosnippet#snippets_directory='~/.vim/snippets/'
 
 "-----------------------------
-" quickrun
-"-----------------------------
-let g:quickrun_config = {}
-let g:quickrun_config._ = {'runner' : 'vimproc'}
-let g:quickrun_config['rspec/bundle'] = {
-  \ 'type': 'rspec/bundle',
-  \ 'command': 'rspec',
-  \ 'outputter': 'buffered:target=buffer',
-  \ 'exec': 'bundle exec %c %o %s'
-  \}
-let g:quickrun_config['rspec/normal'] = {
-  \ 'type': 'rspec/normal',
-  \ 'command': 'rspec',
-  \ 'outputter': 'buffered:target=buffer',
-  \ 'exec': '%c %o %s'
-  \}
-function! RSpecQuickrun()
-  let b:quickrun_config = {'type' : 'rspec/bundle'}
-  nnoremap <expr> <Leader>t "<Esc>:QuickRun -cmdopt \"-l " . line(".") . "\"<CR>"
-endfunction
-autocmd vimrc BufReadPost *_spec.rb call RSpecQuickrun()
-
-"-----------------------------
 " unite.vim
 "-----------------------------
 let g:unite_source_history_yank_enable =1
@@ -130,17 +92,6 @@ nnoremap <silent> ,g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
 nnoremap <silent> ,gg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
 
 "-----------------------------
-" vimfiler
-"-----------------------------
-nnoremap <Leader>f :VimFiler -split -simple -winwidth=35 -no-quit <CR>
-
-"-----------------------------
-" gitv
-"-----------------------------
-nnoremap <Leader>gi :Gitv<CR>
-nnoremap <Leader>gii :Gitv!<CR>
-
-"-----------------------------
 " lightline.vim
 "-----------------------------
 let g:lightline = {
@@ -150,13 +101,6 @@ let g:lightline = {
   \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
   \ },
 \ }
-
-"-----------------------------
-" vimshell
-"-----------------------------
-let g:vimshell_prompt = "[".$USERNAME."] # "
-nnoremap <Leader>s :VimShell<CR>
-nnoremap <Leader>ss :VimShellSendString<CR>
 
 "-----------------------------
 " neocomplcache
