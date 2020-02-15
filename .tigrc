@@ -1,2 +1,6 @@
+# Vim風に<C-f>,<C-b>でページ移動
+bind generic ^f scroll-page-down
+bind generic ^b scroll-page-up
+
 # P で remote への push
 bind generic P      ?git push -u %(remote) %(repo:head)
