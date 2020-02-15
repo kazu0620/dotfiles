@@ -1,0 +1,2 @@
+# P で remote への push
+bind generic P      ?git push -u %(remote) %(repo:head)
