@@ -8,3 +8,4 @@ ln -s ~/dotfiles/.zsh ~/.zsh
 ln -s ~/dotfiles/.screenrc ~/.screenrc
 ln -s ~/dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/dotfiles/.peco ~/.peco
+ln -s ~/dotfiles/.tigrc ~/.tigrc
